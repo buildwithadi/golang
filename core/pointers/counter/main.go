@@ -38,7 +38,9 @@ func increment(ptr *int) {
 }
 
 func decrement(ptr *int) {
-	*ptr = *ptr - 1
+	if *ptr-1 >= 0 {
+		*ptr = *ptr - 1
+	}
 }
 
 func reset(ptr *int) {
