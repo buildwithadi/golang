@@ -1,12 +1,25 @@
-Hello,
+# GoLang
 
-This is the repo which is created/maintained by me.
+My Go learning repository, containing fundamentals, hands-on practice, and mini-projects built while exploring Go.
 
-This repo consists of my journey of learning GoLang.
+## Repository Structure
 
-/practice : this folder have all the codes which I wrote while following a tuturial
+```text
+GoLang/
+├── core/          # Core Go concepts and fundamentals
+├── practice/      # Topic-wise notes and coding practice
+└── mini-project/  # Hands-on projects built using Go
+    └── logCLI/    # CLI-based log parser
+```
 
+## Goals
 
-[I'll update this readme as I move along the process]
+- Understand Go fundamentals and standard library.
+- Practice problem-solving and implementation.
+- Build practical projects.
+- Explore systems programming and backend development.
 
-Thanks ;)
+## Progress
+
+Currently learning Go through hands-on coding, structured practice, and mini-projects.
+
