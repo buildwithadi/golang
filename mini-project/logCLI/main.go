@@ -14,6 +14,8 @@ import (
 func main() {
 
 	var count int = 0
+	var analyzer *Analyzer = NewAnalyzer()
+	var malformedEntries int = 0
 
 	start := time.Now()
 
@@ -26,6 +28,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer file.Close()
 
 	// Reading the File Line by Line
 	// Count Total Number of lines in the file
@@ -41,18 +44,12 @@ func main() {
 			logObj, err := ParseLog(line)
 
 			if err != nil {
-				fmt.Print("Error:", err)
-				return
+				malformedEntries++
+
+			} else {
+				// storing data in analyzer struct
+				analyzer.ProcessEntry(logObj)
 			}
-
-			ip := logObj.IPAddress
-			timestamp := logObj.Timestamp
-			method := logObj.Method
-			url := logObj.URL
-			statusCode := logObj.StatusCode
-			responseSize := logObj.ResponseSize
-
-			fmt.Printf("IP: %s\nTimestamp: %s\nMethod: %s\nURL: %s\nStatus Code: %d\nResponse Size: %d\n\n", ip, timestamp, method, url, statusCode, responseSize)
 
 		}
 
@@ -61,16 +58,28 @@ func main() {
 		}
 
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Error reading file: %v", err)
 		}
 
 	}
+
+	// Analyzing Result:
+	topIPs := analyzer.GetTopIPs(10)
+
+	fmt.Println("Total Request:", analyzer.TotalRequests)
+	for status, count := range analyzer.StatusCount {
+		fmt.Println(status, ":", count)
+	}
+	fmt.Println("Top 10 IP Addresses:")
+	for _, data := range topIPs {
+		fmt.Println(data.IP, "-", data.Requests, "requests")
+	}
+	fmt.Println("Client Errors (4xx):", analyzer.ClientErrors)
+	fmt.Println("Server Errors (5xx):", analyzer.ServerErrors)
 
 	// Calculating the time taken to read the file
 	fmt.Println()
 	enlapsed := time.Since(start)
 	fmt.Println("Number of lines:", count, "Time take:", enlapsed)
-
-	defer file.Close()
 
 }

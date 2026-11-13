@@ -12,11 +12,6 @@ paths = [
 ]
 statuses = [200, 200, 200, 201, 301, 400, 403, 404, 500, 502]
 
-user_agents = [
-    "Mozilla/5.0",
-    "Chrome/120.0",
-    "Safari/17.0"
-]
 
 timestamp = datetime.now()
 
@@ -32,9 +27,7 @@ with open("access.log", "w", buffering=1024 * 1024) as f:
             f'[{timestamp.strftime("%d/%b/%Y:%H:%M:%S")} +0000] '
             f'"{random.choice(methods)} {random.choice(paths)} HTTP/1.1" '
             f'{random.choice(statuses)} '
-            f'{random.randint(100, 10000)} '
-            f'"https://example.com" '
-            f'"{random.choice(user_agents)}"\n'
+            f'{random.randint(100, 10000)}\n'
         )
 
         f.write(log)
