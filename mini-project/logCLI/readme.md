@@ -144,3 +144,28 @@ go test -v ./...
 ```
 
 ## Learning Outcomes
+
+This project helped me practice and understand:
+
+- File handling and buffered reading in Go
+- Regular expressions and string parsing
+- Structs and methods
+- Maps and slices
+- Sorting data
+- Error handling
+- Unit testing with Go's `testing` package
+- JSON serialization
+- CLI argument parsing
+- Processing large files sequentially
+
+## Future Improvements
+
+- Support additional log formats.
+- Add date-wise and endpoint-wise analytics.
+- Support CSV report generation.
+- Improve parsing for additional Nginx log formats.
+- Explore concurrent processing for very large log files.
+
+## Author
+
+Built as a hands-on Go project to strengthen my understanding of Go fundamentals, file processing, and backend development.
