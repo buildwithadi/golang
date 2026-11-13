@@ -66,20 +66,30 @@ func main() {
 	// Analyzing Result:
 	topIPs := analyzer.GetTopIPs(10)
 
-	fmt.Println("Total Request:", analyzer.TotalRequests)
+	fmt.Println("===================")
+	fmt.Println("===GO LOG PARSER===")
+	fmt.Println("===================")
+
+	fmt.Println("\nTotal Lines:", count)
+	fmt.Println("Sucessfully Parsed:", analyzer.TotalRequests)
+	fmt.Println("Malformed Entries:", malformedEntries)
+
+	fmt.Println("\nHTTP Status Distribution:")
 	for status, count := range analyzer.StatusCount {
 		fmt.Println(status, ":", count)
 	}
-	fmt.Println("Top 10 IP Addresses:")
+
+	fmt.Println("\nTop 10 IP Addresses:")
 	for _, data := range topIPs {
 		fmt.Println(data.IP, "-", data.Requests, "requests")
 	}
-	fmt.Println("Client Errors (4xx):", analyzer.ClientErrors)
+
+	fmt.Println("\nClient Errors (4xx):", analyzer.ClientErrors)
 	fmt.Println("Server Errors (5xx):", analyzer.ServerErrors)
 
 	// Calculating the time taken to read the file
 	fmt.Println()
 	enlapsed := time.Since(start)
-	fmt.Println("Number of lines:", count, "Time take:", enlapsed)
+	fmt.Println("Processing Time:", enlapsed)
 
 }
